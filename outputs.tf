@@ -1,3 +1,7 @@
+output "servicebus_subscription_rules_id" {
+  description = "Map of id values across all servicebus_subscription_rules, keyed the same as var.servicebus_subscription_rules"
+  value       = { for k, v in azurerm_servicebus_subscription_rule.servicebus_subscription_rules : k => v.id }
+}
 output "servicebus_subscription_rules_action" {
   description = "Map of action values across all servicebus_subscription_rules, keyed the same as var.servicebus_subscription_rules"
   value       = { for k, v in azurerm_servicebus_subscription_rule.servicebus_subscription_rules : k => v.action }
