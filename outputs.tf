@@ -8,7 +8,7 @@ output "servicebus_subscription_rules_action" {
 }
 output "servicebus_subscription_rules_correlation_filter" {
   description = "Map of correlation_filter values across all servicebus_subscription_rules, keyed the same as var.servicebus_subscription_rules"
-  value       = { for k, v in azurerm_servicebus_subscription_rule.servicebus_subscription_rules : k => v.correlation_filter if v.correlation_filter != null && length(v.correlation_filter) > 0 }
+  value       = { for k, v in azurerm_servicebus_subscription_rule.servicebus_subscription_rules : k => one(v.correlation_filter) if v.correlation_filter != null && length(v.correlation_filter) > 0 }
 }
 output "servicebus_subscription_rules_filter_type" {
   description = "Map of filter_type values across all servicebus_subscription_rules, keyed the same as var.servicebus_subscription_rules"
